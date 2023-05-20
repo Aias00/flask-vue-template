@@ -16,7 +16,7 @@ export default defineConfig({
     // 配置代理
     proxy: {
       '^/api': {
-        target: 'http://localhost:5001',
+        target: 'http://flask-vue-template-flask-1:5001',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, "")
       }

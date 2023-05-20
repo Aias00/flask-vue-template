@@ -1,17 +1,3 @@
-FROM node:18.15-alpine
-
-RUN npm install -g http-server
-
-WORKDIR /app
-
-COPY package*.json ./
-
-RUN npm install
-
-COPY . .
-
-RUN ROOT_API=http://localhost:5001 npm run build
-
-EXPOSE 8080
-
-CMD [ "http-server", "dist" ]
+FROM nginx:1.22
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY ./dist /usr/share/nginx/html

@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  flask:
+    build:
+      context: ./flask
+      dockerfile: Dockerfile
+    ports:
+      - 5001:5001
+    environment:
+      - FLASK_ENV=development
+      - APP_SETTINGS=project.config.DevelopmentConfig
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - 8089:8080
+    depends_on:
+      - flask
